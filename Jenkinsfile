@@ -55,6 +55,11 @@ pipeline {
           options {
             skipDefaultCheckout()
           }
+          when {
+            not {
+              branch '*dev'
+            } beforeAgent true
+          }
           environment {
               DOCKERCREDS = credentials('docker_login') //use the credentials just created in this stage
           }
@@ -66,6 +71,22 @@ pipeline {
             sh 'ci/push-docker.sh'
           }
         }
+      stage('component test') {
+        when {
+          not {
+            branch '*dev'
+          }
+          beforeAgent true
+        }
+      options {
+        skipDefaultCheckout(true)
+      }
+      steps {
+        sh 'echo hello world'
+        unstash 'code'
+        sh 'ci/component-test.sh'
+      }
+    }
 
   }
 }
