@@ -6,6 +6,7 @@ pipeline {
         stage('Say Hello') {
           steps {
             sh 'echo "hello world"'
+            archiveArtifacts 'app/build/libs/'
           }
         }
 
