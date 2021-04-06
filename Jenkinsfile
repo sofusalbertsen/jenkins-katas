@@ -55,11 +55,6 @@ pipeline {
           options {
             skipDefaultCheckout()
           }
-          when {
-            not {
-              branch '*dev'
-            } beforeAgent true
-          }
           environment {
               DOCKERCREDS = credentials('docker_login') //use the credentials just created in this stage
           }
