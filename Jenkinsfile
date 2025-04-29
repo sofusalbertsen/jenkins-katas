@@ -22,7 +22,7 @@ pipeline {
           }
           agent {
             docker {
-              image 'gradle:jdk11'
+              image 'gradle:6-jdk11'
             }
 
           }
@@ -38,7 +38,7 @@ pipeline {
           }
           agent {
             docker {
-              image 'gradle:jdk11'
+              image 'gradle:6-jdk11'
             }
 
           }
