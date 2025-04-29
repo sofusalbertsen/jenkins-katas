@@ -1,6 +1,11 @@
 pipeline {
   agent any
   stages {
+    stage('clone down'){
+      steps{
+        stash excludes: '.git', name: 'code'
+      }
+    }
     stage('hello world') {
       parallel {
         stage('hello world') {
@@ -9,7 +14,7 @@ pipeline {
           }
         }
 
-        stage('') {
+        stage('build app') {
           agent {
             docker {
               image 'gradle:6-jdk11'
