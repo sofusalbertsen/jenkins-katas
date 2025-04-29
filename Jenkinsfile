@@ -3,9 +3,7 @@ pipeline {
   
   stages {
     stage('Clone down'){
-      agent {
-        label 'host'
-      }
+      agent any
       steps{
         stash excludes: '.git', name: 'code'
       }
